@@ -228,7 +228,8 @@ ppc_group_data <- function(y, yrep, group, stat = NULL) {
   }
 
   stat <- match.fun(stat)
-  dplyr_fun(molten_d, value = stat(.data$value))
+  dplyr_fun(molten_d, value = stat(.data$value)) %>%
+    ungroup()
 
   # todo: does this result need to be ungrouped. If mutating path, it has two
   # grouping vars. It summarising path, it has one grouping var.
